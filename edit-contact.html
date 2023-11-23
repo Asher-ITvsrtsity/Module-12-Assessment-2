@@ -2,28 +2,40 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title></title>
+  <title>Edit Contact</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body onload="getContact()">
-    <div id="avatarImage"></div>
-    <form id="editForm">
-        <label for="firstname">First name</label>
-        <input type="text" name="firstname" id="firstname" readonly><br/>
-        <label for="lastname">Last name</label>
-        <input type="text" name="lastname" id="lastname" readonly><br/>
-        <label for="mobile">Mobile</label>
-        <input type="text" name="mobile" id="mobile" readonly><br/>
-        <label for="email">Email</label>
-        <input type="text" name="email" id="email1" readonly><br/>
-        <label for="avatar" id="avatarLabel" hidden>Change profile image</label><br/>
-        <input type="file" name="avatar" id="avatar" hidden><br/>
-        <button type="submit" id="submitForm" hidden>Submit</button>
-    </form>
-    <br/>
-    <button id="homeLink" type="button">Home</button>
-    <button id="editContact" type="button">Edit</button>
-    <button id="deleteContact" type="button">Delete</button>
-    
+<body onload="getContact()" class="bg-dark text-white">
+    <div class="container">
+        <div id="avatarImage" class="text-center mt-3"></div>
+        <form id="editForm" class="mb-3">
+            <div class="form-group">
+                <label for="firstname">First name</label>
+                <input type="text" name="firstname" id="firstname" class="form-control" readonly>
+            </div>
+            <div class="form-group">
+                <label for="lastname">Last name</label>
+                <input type="text" name="lastname" id="lastname" class="form-control" readonly>
+            </div>
+            <div class="form-group">
+                <label for="mobile">Mobile</label>
+                <input type="text" name="mobile" id="mobile" class="form-control" readonly>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="text" name="email" id="email1" class="form-control" readonly>
+            </div>
+            <div class="form-group" id="avatarGroup" hidden>
+                <label for="avatar" id="avatarLabel">Change profile image</label>
+                <input type="file" name="avatar" id="avatar" class="form-control-file">
+            </div>
+            <button type="submit" id="submitForm" class="btn btn-primary" hidden>Submit</button>
+        </form>
+        <button id="homeLink" type="button" class="btn btn-secondary mb-2">Home</button>
+        <button id="editContact" type="button" class="btn btn-info mb-2">Edit</button>
+        <button id="deleteContact" type="button" class="btn btn-danger mb-2">Delete</button>
+    </div>
+
     <script src="config.js"></script>
     <script>
       var id = getId();
@@ -54,8 +66,9 @@
       }
 
       function displayOutput(data){
-        avatarImage = `
-          <img src="${rootPath}controller/uploads/${data[0].avatar}" width="200"/>`
+    avatarImage = `
+      <img src="${rootPath}controller/uploads/${data[0].avatar}" width="200" class="rounded"/>`
+        document.getElementById("avatarImage").innerHTML = avatarImage;
         document.getElementById("avatarImage").innerHTML = avatarImage;
         document.getElementById("firstname").value = data[0].firstname;
         document.getElementById("lastname").value = data[0].lastname;
@@ -68,7 +81,7 @@
         document.getElementById("lastname").readOnly = false;
         document.getElementById("mobile").readOnly = false;
         document.getElementById("email1").readOnly = false;
-        document.getElementById("avatar").hidden = false;
+        document.getElementById("avatarGroup").hidden = false;
         document.getElementById("submitForm").hidden = false;
       }
 
@@ -116,5 +129,8 @@
       }
 
     </script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </body>
 </html>

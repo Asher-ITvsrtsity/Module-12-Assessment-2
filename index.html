@@ -4,11 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact Book</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body onload="fetchContacts()">
-    <div id="table">Contacts loading...</div>
-    <button id="refresh" type="button">Refresh</button>
-    <button id="addContact" type="button">Add Contact</button>
+<body onload="fetchContacts()" class="bg-dark text-white">
+    <div class="container">
+        <div id="table" class="mt-4 rounded">Contacts loading...</div>
+        <button id="refresh" type="button" class="btn btn-primary mt-2 rounded-pill">Refresh</button>
+        <button id="addContact" type="button" class="btn btn-secondary mt-2 rounded-pill">Add Contact</button>
+    </div>
+    
 
     <script src="config.js"></script>
     <script>
@@ -27,18 +31,18 @@
         }
 
         function displayOutput(data){
-            output = "<table>";
+            output = '<div class="table-responsive"><table class="table table-dark table-striped">';
             
             for(a in data){
                 output +=`
                 <tr onclick="editContact(${data[a].id})">
-                    <td><img src="${rootPath}/controller/uploads/${data[a].avatar}" width="40"></td>
+                    <td><img src="${rootPath}/controller/uploads/${data[a].avatar}" width="40" class="rounded"></td>
                     <td><h5>${data[a].firstname}</h5></td>
                     <td><h5>${data[a].lastname}</h5></td>
                 </tr>
                 `
             }
-            output += "</table>";
+            output += "</table></div>";
             document.getElementById("table").innerHTML = output;
         }
 
@@ -51,5 +55,8 @@
         }
 
     </script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </body>
 </html>
